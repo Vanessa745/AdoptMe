@@ -1,7 +1,7 @@
 // Determinar URL base del API según entorno (coincide con otros repos)
 const _hostname =
-    typeof window !== 'undefined' && window.location && window.location.hostname
-        ? window.location.hostname
+    globalThis.window !== undefined && globalThis.location && globalThis.location.hostname
+        ? globalThis.location.hostname
         : 'localhost';
     const API_URL = _hostname === 'localhost' ? 'http://localhost:3001' : 'https://ingsoftadoptme.onrender.com';
 

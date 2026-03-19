@@ -3,7 +3,7 @@ import Mascota from './domain/Mascota.js';
 import { buildImgUrl } from './services/ObtenerImagenMascotaService.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(globalThis.location.search);
     const idMascota = params.get('id');
     
     const detalleDiv = document.querySelector("#detalle-div");
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             
 
             const q = targetName ? ('?id=' + encodeURIComponent(targetName)) : '';
-            window.location.href = './FormSolicitudAdopcion.html' + q;
+            globalThis.location.href = './FormSolicitudAdopcion.html' + q;
         });
         if (detallesMascota.estado === 'Adoptado') {
             adoptBtn.style.display = 'none';

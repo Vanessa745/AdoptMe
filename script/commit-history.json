@@ -133,12 +133,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "2b608530d5e71d709080406c2baaceff8fed3921",
     "author": "JoseAB32",
     "commit": {
       "date": "2025-11-27T14:19:44.000Z",
       "message": "Fixed: Se corrigio entity mal estructurada",
-      "url": "https://github.com/LokoAddams/ingSoftAdoptme/commit/HEAD"
+      "url": "https://github.com/LokoAddams/ingSoftAdoptme/commit/2b608530d5e71d709080406c2baaceff8fed3921"
     },
     "stats": {
       "total": 1,
@@ -183,6 +183,25 @@
       "additions": 4,
       "deletions": 0,
       "date": "2025-11-27"
+    },
+    "coverage": 63.97,
+    "test_count": 40,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Vanessa745",
+    "commit": {
+      "date": "2026-03-19T14:40:27.000Z",
+      "message": "fix: corrección de issues -> windows o global por globalThis",
+      "url": "https://github.com/Vanessa745/AdoptMe/commit/HEAD"
+    },
+    "stats": {
+      "total": 68,
+      "additions": 34,
+      "deletions": 34,
+      "date": "2026-03-19"
     },
     "coverage": 63.97,
     "test_count": 40,

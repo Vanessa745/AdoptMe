@@ -14,7 +14,7 @@ let currentMascotaId = null;
 // Si venimos con ?id=..., pedimos la mascota al backend y precargamos los campos
 (async () => {
   try {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(globalThis.location.search);
     const id = params.get('id');
     if (id) {
       const m = await mascotaRepository.obtenerDetalleMascotaPorId( id);
@@ -79,7 +79,7 @@ if (botonEnviarSolicitud) {
 
           const solicitud = await solicitudAdopcionService.createSolicitud(mascotaIdToSend, adoptanteNombre);
 
-          window.__ultimaSolicitudAdopcion = solicitud;
+          globalThis.__ultimaSolicitudAdopcion = solicitud;
           const mensajeDiv = document.getElementById('solicitudMensaje');
           if (mensajeDiv) mensajeDiv.innerText = 'Solicitud enviada correctamente';
         } catch (err) {

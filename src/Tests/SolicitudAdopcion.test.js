@@ -21,7 +21,7 @@ describe('SolicitudAdopcion - EnviarSolicitud', () => {
 		solicitudAdopcionService = new SolicitudAdopcionService(new SolicitudAdopcionRepository(), new ValidarConexion());
 
 		// Mock global.fetch for health-check and POST /api/solicitudes
-		jest.spyOn(global, 'fetch').mockImplementation(async (url, opts) => {
+		jest.spyOn(globalThis, 'fetch').mockImplementation(async (url, opts) => {
 			const u = String(url);
 			if (u === 'http://localhost:3001' || u === 'https://ingsoftadoptme.onrender.com') {
 				return { ok: true, status: 200, json: async () => ({ status: 'ok' }) };
@@ -36,7 +36,7 @@ describe('SolicitudAdopcion - EnviarSolicitud', () => {
 	});
 
 	beforeAll(() => {
-        window.alert = jest.fn(); 
+        globalThis.alert = jest.fn(); 
     });
 
 	afterEach(() => {
@@ -66,7 +66,7 @@ describe('SolicitudAdopcion - EnviarSolicitud', () => {
 		const data = { mascotaId: '6925071aa83df10a4b76900c', adoptanteNombre: 'Juan Pérez' };
 
 		// mock fetch: health-check to API_URL and POST /api/solicitudes
-		jest.spyOn(global, 'fetch').mockImplementation(async (url, opts) => {
+		jest.spyOn(globalThis, 'fetch').mockImplementation(async (url, opts) => {
 			const u = String(url);
 			if (u === 'http://localhost:3001' || u === 'https://ingsoftadoptme.onrender.com') {
 				return { ok: true, status: 200, json: async () => ({ status: 'ok' }) };

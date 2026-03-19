@@ -2,8 +2,8 @@ import SolicitudAdopcion from '../domain/SolicitudAdopcion.js';
 import Adoptante from '../domain/Adoptante.js';
 import Mascota from '../domain/Mascota.js';
 const _hostname =
-  typeof window !== "undefined" && window.location && window.location.hostname
-    ? window.location.hostname
+  globalThis.window !== undefined && globalThis.location && globalThis.location.hostname
+    ? globalThis.location.hostname
     : "localhost";
 const API_URL =
   _hostname === "localhost"

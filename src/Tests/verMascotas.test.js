@@ -6,12 +6,12 @@ import ValidarConexion from '../infraestructure/ValidarConexion.js';
 // Helpers: provide browser-like globals and a conditional fetch mock so
 // the real ValidarConexion methods can run inside Node/Jest.
 function setupBrowserGlobals() {
-  if (typeof global.window === 'undefined') global.window = { location: { hostname: 'localhost', search: '' } };
-  else global.window.location = global.window.location || { hostname: 'localhost', search: '' };
+  if (typeof globalThis.window === 'undefined') globalThis.window = { location: { hostname: 'localhost', search: '' } };
+  else globalThis.window.location = globalThis.window.location || { hostname: 'localhost', search: '' };
 
-  if (typeof global.navigator === 'undefined') global.navigator = {};
+  if (typeof globalThis.navigator === 'undefined') globalThis.navigator = {};
   // default online; tests may toggle this value
-  Object.defineProperty(global.navigator, 'onLine', { value: true, configurable: true, writable: true });
+  Object.defineProperty(globalThis.navigator, 'onLine', { value: true, configurable: true, writable: true });
 }
 const mockInternetConnection = (status) => {
         Object.defineProperty(navigator, 'onLine', {
@@ -70,7 +70,7 @@ describe('obtenerMascotas', () => {
     mascotaService = new MascotaService(mascotaRepository, validarConexion);
 
     // default fetch: health ok and API returns empty array for mascotas
-    jest.spyOn(global, 'fetch').mockImplementation(
+    jest.spyOn(globalThis, 'fetch').mockImplementation(
       createFetchMock({ healthOk: true, mascotasResponse: { ok: true, status: 200, json: async () => [] } })
     );
   });
@@ -87,7 +87,7 @@ describe('obtenerMascotas', () => {
   });
 
   it('lanza error con código HTTP cuando la respuesta no es ok', async () => {
-    jest.spyOn(global, 'fetch').mockImplementation(
+    jest.spyOn(globalThis, 'fetch').mockImplementation(
       createFetchMock({ healthOk: true, mascotasResponse: { ok: false, status: 500, json: async () => { throw new Error('HTTP 500'); } } })
     );
     await expect(mascotaService.obtenerMascotas()).rejects.toThrow('HTTP 500');
@@ -120,7 +120,7 @@ describe('obtenerMascotas', () => {
       }
     ];
 
-    jest.spyOn(global, 'fetch').mockResolvedValue({ ok: true, json: async () => apiData });
+    jest.spyOn(globalThis, 'fetch').mockResolvedValue({ ok: true, json: async () => apiData });
 
     const result = await mascotaService.obtenerMascotas();
     expect(Array.isArray(result)).toBe(true);
@@ -163,7 +163,7 @@ describe("obtenerDetalleMascotaPorId", () => {
     mascotaService = new MascotaService(mascotaRepository, validarConexion);
 
     // default fetch: health ok and return empty object for detalle
-    jest.spyOn(global, 'fetch').mockImplementation(
+    jest.spyOn(globalThis, 'fetch').mockImplementation(
       createFetchMock({ healthOk: true, mascotasResponse: { ok: true, status: 200, json: async () => ({}) } })
     );
   });
@@ -173,7 +173,7 @@ describe("obtenerDetalleMascotaPorId", () => {
     await expect(mascotaService.obtenerDetalleMascotaPorId()).rejects.toThrow('Revise su conexión a internet.');
   });
   it('lanza error con código HTTP cuando la respuesta no es ok', async () => {
-      jest.spyOn(global, 'fetch').mockImplementation(
+      jest.spyOn(globalThis, 'fetch').mockImplementation(
         createFetchMock({ healthOk: true, mascotasResponse: { ok: false, status: 500, json: async () => { throw new Error('HTTP 500'); } } })
       );
       // pasar un id para que la función realice la llamada fetch por id
@@ -191,7 +191,7 @@ describe("obtenerDetalleMascotaPorId", () => {
       facilitador: 'Andres Calamaro',
       id: '6921d0e55bd8ce602b65311e'
     };
-    jest.spyOn(global, 'fetch').mockImplementation(
+    jest.spyOn(globalThis, 'fetch').mockImplementation(
       createFetchMock({ healthOk: true, mascotasResponse: { ok: true, status: 200, json: async () => apiItem } })
     );
     const result = await mascotaService.obtenerDetalleMascotaPorId(apiItem.id);
@@ -210,7 +210,7 @@ describe('ValidarConexion (unidad)', () => {
     setupBrowserGlobals();
     const validar = new ValidarConexion();
     // mock fetch so health-check returns ok:false
-    jest.spyOn(global, 'fetch').mockImplementation(createFetchMock({ healthOk: false }));
+    jest.spyOn(globalThis, 'fetch').mockImplementation(createFetchMock({ healthOk: false }));
     await expect(validar.validarConexionBackend()).rejects.toThrow('Hubo un error con la conexion a nuestro servidor.');
   });
 });
