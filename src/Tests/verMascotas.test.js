@@ -6,10 +6,10 @@ import ValidarConexion from '../infraestructure/ValidarConexion.js';
 // Helpers: provide browser-like globals and a conditional fetch mock so
 // the real ValidarConexion methods can run inside Node/Jest.
 function setupBrowserGlobals() {
-  if (typeof globalThis.window === 'undefined') globalThis.window = { location: { hostname: 'localhost', search: '' } };
+  if (globalThis.window === undefined) globalThis.window = { location: { hostname: 'localhost', search: '' } };
   else globalThis.window.location = globalThis.window.location || { hostname: 'localhost', search: '' };
 
-  if (typeof globalThis.navigator === 'undefined') globalThis.navigator = {};
+  if (globalThis.navigator === undefined) globalThis.navigator = {};
   // default online; tests may toggle this value
   Object.defineProperty(globalThis.navigator, 'onLine', { value: true, configurable: true, writable: true });
 }

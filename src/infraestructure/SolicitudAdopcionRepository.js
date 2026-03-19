@@ -62,11 +62,12 @@ class SolicitudAdopcionRepository {
         const body = await res.json();
         if (body && body.message) message = body.message;
       } catch (e) {
+        console.error("No se pudo parsear la respuesta de error como JSON:", e);
         try {
           const text = await res.text();
           if (text) message = text;
-        } catch (e2) {
-          // ignore
+        } catch (error) {
+          console.error("No se pudo leer la respuesta de error como texto:", error);
         }
       }
       throw new Error(message);
@@ -85,11 +86,12 @@ class SolicitudAdopcionRepository {
         const body = await res.json();
         if (body && body.message) message = body.message;
       } catch (e) {
+        console.error("No se pudo parsear la respuesta de error como JSON:", e);
         try {
           const text = await res.text();
           if (text) message = text;
-        } catch (e2) {
-          // ignore
+        } catch (error) {
+          console.error("No se pudo leer la respuesta de error como texto:", error);
         }
       }
       throw new Error(message);
@@ -112,10 +114,13 @@ class SolicitudAdopcionRepository {
         const body = await res.json();
         if (body && body.message) message = body.message;
       } catch (e) {
+        console.error("No se pudo parsear la respuesta de error como JSON:", e);
         try {
           const text = await res.text();
           if (text) message = text;
-        } catch (e2) {}
+        } catch (error) {
+          console.error("No se pudo leer la respuesta de error como texto:", error);
+        }
       }
       throw new Error(message);
     }

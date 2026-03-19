@@ -152,12 +152,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "e6d9f5515bc298240d18049a57da41e53e839197",
     "author": "JoseAB32",
     "commit": {
       "date": "2025-11-27T14:46:04.000Z",
       "message": "feat: Ahora registra tambien al facilitador de la mascota",
-      "url": "https://github.com/LokoAddams/ingSoftAdoptme/commit/HEAD"
+      "url": "https://github.com/LokoAddams/ingSoftAdoptme/commit/e6d9f5515bc298240d18049a57da41e53e839197"
     },
     "stats": {
       "total": 2,
@@ -204,6 +204,25 @@
       "date": "2026-03-19"
     },
     "coverage": 63.97,
+    "test_count": 40,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Vanessa745",
+    "commit": {
+      "date": "2026-03-19T15:13:33.000Z",
+      "message": "fix: corrección de issues -> manejo de errores y nombres",
+      "url": "https://github.com/Vanessa745/AdoptMe/commit/HEAD"
+    },
+    "stats": {
+      "total": 23,
+      "additions": 14,
+      "deletions": 9,
+      "date": "2026-03-19"
+    },
+    "coverage": 61.27,
     "test_count": 40,
     "failed_tests": 0,
     "conclusion": "success"
