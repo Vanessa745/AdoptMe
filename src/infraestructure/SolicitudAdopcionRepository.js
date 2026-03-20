@@ -10,19 +10,6 @@ const API_URL =
     ? "http://localhost:3001" // desarrollo
     : "https://ingsoftadoptme.onrender.com"; // producción
 
-
-/*function mapJsonToSolicitudAdopcion(json = {}) {
-  const adoptanteNombre = json.adoptanteNombre || (json.adoptante && json.adoptante.nombre) || '';
-  const mascotaId = json.mascotaId || (json.mascota && (json.mascota.id || json.mascota._id)) || null;
-
-  const adoptante = new Adoptante({ nombre: adoptanteNombre });
-  const mascota = new Mascota({ id: mascotaId });
-
-  const fecha = json.fechaSolicitud || json.createdAt || json.fecha || null;
-
-  return new SolicitudAdopcion(adoptante, mascota, fecha);
-}*/
-
 function mapJsonToSolicitudAdopcion(json = {}) {
   const adoptanteNombre =
     json.adoptanteNombre ||

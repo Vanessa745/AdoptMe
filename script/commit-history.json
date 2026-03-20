@@ -190,12 +190,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "15b343f440d82b553443921046f6fc91b2f1bd24",
     "author": "Vanessa745",
     "commit": {
       "date": "2026-03-19T14:40:27.000Z",
       "message": "fix: corrección de issues -> windows o global por globalThis",
-      "url": "https://github.com/Vanessa745/AdoptMe/commit/HEAD"
+      "url": "https://github.com/Vanessa745/AdoptMe/commit/15b343f440d82b553443921046f6fc91b2f1bd24"
     },
     "stats": {
       "total": 68,
@@ -239,6 +239,25 @@
       "total": 21,
       "additions": 2,
       "deletions": 19,
+      "date": "2026-03-20"
+    },
+    "coverage": 61.27,
+    "test_count": 40,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Vanessa745",
+    "commit": {
+      "date": "2026-03-20T17:18:44.000Z",
+      "message": "fix: corrección de issues -> eliminación de código comentado",
+      "url": "https://github.com/Vanessa745/AdoptMe/commit/HEAD"
+    },
+    "stats": {
+      "total": 49,
+      "additions": 4,
+      "deletions": 45,
       "date": "2026-03-20"
     },
     "coverage": 61.27,
