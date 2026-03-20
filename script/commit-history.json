@@ -171,12 +171,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "681854e3837a1943b71e888f336990e000fd70f3",
     "author": "JoseAB32",
     "commit": {
       "date": "2025-11-27T14:51:30.000Z",
       "message": "feat: Si la mascota esta adoptada, se oculta el boton adoptar",
-      "url": "https://github.com/LokoAddams/ingSoftAdoptme/commit/HEAD"
+      "url": "https://github.com/LokoAddams/ingSoftAdoptme/commit/681854e3837a1943b71e888f336990e000fd70f3"
     },
     "stats": {
       "total": 4,
@@ -221,6 +221,25 @@
       "additions": 14,
       "deletions": 9,
       "date": "2026-03-19"
+    },
+    "coverage": 61.27,
+    "test_count": 40,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Vanessa745",
+    "commit": {
+      "date": "2026-03-20T16:55:22.000Z",
+      "message": "fix: corrección de issues -> eliminación de variable adoptante no usada",
+      "url": "https://github.com/Vanessa745/AdoptMe/commit/HEAD"
+    },
+    "stats": {
+      "total": 21,
+      "additions": 2,
+      "deletions": 19,
+      "date": "2026-03-20"
     },
     "coverage": 61.27,
     "test_count": 40,

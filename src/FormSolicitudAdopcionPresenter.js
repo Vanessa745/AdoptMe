@@ -1,4 +1,3 @@
-import Adoptante from './domain/Adoptante.js';
 import Mascota from './domain/Mascota.js';
 import SolicitudAdopcionService from './services/SolicitudAdopcionService.js';
 import SolicitudAdopcionRepository from './infraestructure/SolicitudAdopcionRepository.js';
@@ -44,22 +43,6 @@ let currentMascotaId = null;
 
 if (botonEnviarSolicitud) {
     botonEnviarSolicitud.addEventListener('click', () => {
-      const adoptante = new Adoptante({
-        nombre: (document.getElementById('adoptanteNombre') || {}).value || '',
-        cuestionario: {
-          responsabilidad: (document.getElementById('cuestionarioResponsabilidad') || {}).value || '',
-          ambiente: (document.getElementById('cuestionarioAmbiente') || {}).value || '',
-          Problemas_de_salud: (document.getElementById('cuestionarioProblemasSalud') || {}).value || '',
-          ninos: (document.getElementById('cuestionarioNinos') || {}).value || '',
-          otras_mascotas: (document.getElementById('cuestionarioOtrasMascotas') || {}).value || '',
-          economia: Number((document.getElementById('cuestionarioEconomia') || {}).value) || 0,
-        },
-        contacto: {
-          email: (document.getElementById('adoptanteEmail') || {}).value || '',
-          telefono: (document.getElementById('adoptanteTelefono') || {}).value || '',
-        }
-      });
-
       const mascota = new Mascota({
         id: currentMascotaId || undefined,
         nombre: (document.getElementById('mascotaNombre') || {}).value || '',
