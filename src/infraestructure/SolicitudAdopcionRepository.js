@@ -1,10 +1,7 @@
 import SolicitudAdopcion from '../domain/SolicitudAdopcion.js';
 import Adoptante from '../domain/Adoptante.js';
 import Mascota from '../domain/Mascota.js';
-const _hostname =
-  globalThis.window !== undefined && globalThis.location && globalThis.location.hostname
-    ? globalThis.location.hostname
-    : "localhost";
+const _hostname = globalThis.window?.location?.hostname || "localhost";
 const API_URL =
   _hostname === "localhost"
     ? "http://localhost:3001" // desarrollo
@@ -13,12 +10,12 @@ const API_URL =
 function mapJsonToSolicitudAdopcion(json = {}) {
   const adoptanteNombre =
     json.adoptanteNombre ||
-    (json.adoptante && json.adoptante.nombre) ||
+    json.adoptante?.nombre ||
     '';
 
   const mascotaId =
     json.mascotaId ||
-    (json.mascota && (json.mascota.id || json.mascota._id)) ||
+    (json.mascota?.id || json.mascota?._id) ||
     null;
 
   const adoptante = new Adoptante({ nombre: adoptanteNombre });
@@ -44,7 +41,7 @@ class SolicitudAdopcionRepository {
       let message = 'Error al crear solicitud de adopción';
       try {
         const body = await res.json();
-        if (body && body.message) message = body.message;
+        if (body?.message) message = body.message;
       } catch (e) {
         console.error("No se pudo parsear la respuesta de error como JSON:", e);
         try {
@@ -68,7 +65,7 @@ class SolicitudAdopcionRepository {
       let message = 'Error al obtener solicitudes de adopción';
       try {
         const body = await res.json();
-        if (body && body.message) message = body.message;
+        if (body?.message) message = body.message;
       } catch (e) {
         console.error("No se pudo parsear la respuesta de error como JSON:", e);
         try {
@@ -96,7 +93,7 @@ class SolicitudAdopcionRepository {
       let message = 'Error al actualizar estado de la solicitud';
       try {
         const body = await res.json();
-        if (body && body.message) message = body.message;
+        if (body?.message) message = body.message;
       } catch (e) {
         console.error("No se pudo parsear la respuesta de error como JSON:", e);
         try {
