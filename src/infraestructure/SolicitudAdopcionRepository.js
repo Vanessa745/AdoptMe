@@ -32,9 +32,6 @@ function mapJsonToSolicitudAdopcion(json = {}) {
 }
 
 class SolicitudAdopcionRepository {
-  constructor() {
-  }
-
   async create(mascotaId, adoptanteNombre) {
     const res = await fetch(`${API_URL}/api/solicitudes`, {
       method: "POST",
