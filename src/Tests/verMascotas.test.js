@@ -1,4 +1,3 @@
-import Mascota from '../domain/Mascota.js';
 import { MascotaService } from '../services/MascotaService.js';
 import MascotaRepository from '../infraestructure/MascotaRepository.js';
 import ValidarConexion from '../infraestructure/ValidarConexion.js';
