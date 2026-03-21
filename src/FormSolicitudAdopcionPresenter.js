@@ -45,19 +45,19 @@ if (botonEnviarSolicitud) {
     botonEnviarSolicitud.addEventListener('click', () => {
       const mascota = new Mascota({
         id: currentMascotaId || undefined,
-        nombre: (document.getElementById('mascotaNombre') || {}).value || '',
-        especie: (document.getElementById('mascotaEspecie') || {}).value || '',
-        raza: (document.getElementById('mascotaRaza') || {}).value || '',
-        sexo: (document.getElementById('mascotaSexo') || {}).value || '',
-        edad: Number((document.getElementById('mascotaEdad') || {}).value) || 0,
-        estado: (document.getElementById('mascotaEstado') || {}).value || 'disponible',
+        nombre: document.getElementById('mascotaNombre')?.value || '',
+        especie: document.getElementById('mascotaEspecie')?.value || '',
+        raza: document.getElementById('mascotaRaza')?.value || '',
+        sexo: document.getElementById('mascotaSexo')?.value || '',
+        edad: Number(document.getElementById('mascotaEdad')?.value) || 0,
+        estado: document.getElementById('mascotaEstado')?.value || 'disponible',
       });
       
       (async () => {
         try {
           // Leer directamente el nombre del adoptante y el id de la mascota
           // desde los valores actuales del formulario para evitar inconsistencias
-          const adoptanteNombre = (document.getElementById('adoptanteNombre') || {}).value || '';
+          const adoptanteNombre = document.getElementById('adoptanteNombre')?.value || '';
           const mascotaIdToSend = mascota.id || currentMascotaId || undefined;
 
           const solicitud = await solicitudAdopcionService.createSolicitud(mascotaIdToSend, adoptanteNombre);
