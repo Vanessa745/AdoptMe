@@ -209,12 +209,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "f0411e17f6e94973925d78af1e4fbe86d8cb8d9c",
     "author": "Vanessa745",
     "commit": {
       "date": "2026-03-19T15:13:33.000Z",
       "message": "fix: corrección de issues -> manejo de errores y nombres",
-      "url": "https://github.com/Vanessa745/AdoptMe/commit/HEAD"
+      "url": "https://github.com/Vanessa745/AdoptMe/commit/f0411e17f6e94973925d78af1e4fbe86d8cb8d9c"
     },
     "stats": {
       "total": 23,
@@ -228,12 +228,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "99028b89a4f654b4f49743c92a2cadbfd3634907",
     "author": "Vanessa745",
     "commit": {
       "date": "2026-03-20T16:55:22.000Z",
       "message": "fix: corrección de issues -> eliminación de variable adoptante no usada",
-      "url": "https://github.com/Vanessa745/AdoptMe/commit/HEAD"
+      "url": "https://github.com/Vanessa745/AdoptMe/commit/99028b89a4f654b4f49743c92a2cadbfd3634907"
     },
     "stats": {
       "total": 21,
@@ -259,6 +259,44 @@
       "additions": 4,
       "deletions": 45,
       "date": "2026-03-20"
+    },
+    "coverage": 61.27,
+    "test_count": 40,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Vanessa745",
+    "commit": {
+      "date": "2026-03-21T15:39:13.000Z",
+      "message": "fix: corrección de issues -> eliminación de código duplicado",
+      "url": "https://github.com/Vanessa745/AdoptMe/commit/HEAD"
+    },
+    "stats": {
+      "total": 3,
+      "additions": 1,
+      "deletions": 2,
+      "date": "2026-03-21"
+    },
+    "coverage": 61.27,
+    "test_count": 40,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Vanessa745",
+    "commit": {
+      "date": "2026-03-21T15:41:18.000Z",
+      "message": "fix: corrección de issues -> eliminación de código duplicado",
+      "url": "https://github.com/Vanessa745/AdoptMe/commit/HEAD"
+    },
+    "stats": {
+      "total": 4,
+      "additions": 2,
+      "deletions": 2,
+      "date": "2026-03-21"
     },
     "coverage": 61.27,
     "test_count": 40,

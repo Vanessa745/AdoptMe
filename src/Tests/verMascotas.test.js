@@ -188,8 +188,7 @@ describe("obtenerDetalleMascotaPorId", () => {
       edad: 3,
       estado: 'Disponible',
       img_ref: 'https://example.com/image.jpg',
-      facilitador: 'Andres Calamaro',
-      id: '6921d0e55bd8ce602b65311e'
+      facilitador: 'Andres Calamaro'
     };
     jest.spyOn(globalThis, 'fetch').mockImplementation(
       createFetchMock({ healthOk: true, mascotasResponse: { ok: true, status: 200, json: async () => apiItem } })
