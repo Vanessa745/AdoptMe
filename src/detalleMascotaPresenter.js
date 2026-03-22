@@ -1,9 +1,8 @@
-import  MascotaRepository  from './infraestructure/MascotaRepository.js';
-import Mascota from './domain/Mascota.js';
+import  MascotaRepository  from './infraestructure/MascotaRepository.js';   
 import { buildImgUrl } from './services/ObtenerImagenMascotaService.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(globalThis.location.search);
     const idMascota = params.get('id');
     
     const detalleDiv = document.querySelector("#detalle-div");
@@ -76,22 +75,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         adoptBtn.textContent = 'Adoptar';
         // Navega a la pantalla de adopción (se crea `adoptarMascota.html` en src/UI)
         const targetName =  detallesMascota.id;
-        adoptBtn.addEventListener('click', () => {
-            const mascotaPayload = {
-                nombre: detallesMascota.nombre || '',
-                especie: detallesMascota.especie || '',
-                raza: detallesMascota.raza || '',
-                sexo: detallesMascota.sexo || '',
-                edad: detallesMascota.edad || 0,
-                estado: detallesMascota.estado || '',
-                img_ref: detallesMascota.img_ref || '',
-                facilitador: detallesMascota.facilitador || '',
-                id: detallesMascota.id || ''
-            };
-            
+        adoptBtn.addEventListener('click', () => {            
 
             const q = targetName ? ('?id=' + encodeURIComponent(targetName)) : '';
-            window.location.href = './FormSolicitudAdopcion.html' + q;
+            globalThis.location.href = './FormSolicitudAdopcion.html' + q;
         });
         if (detallesMascota.estado === 'Adoptado') {
             adoptBtn.style.display = 'none';

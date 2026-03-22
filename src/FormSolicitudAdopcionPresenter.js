@@ -1,4 +1,3 @@
-import Adoptante from './domain/Adoptante.js';
 import Mascota from './domain/Mascota.js';
 import SolicitudAdopcionService from './services/SolicitudAdopcionService.js';
 import SolicitudAdopcionRepository from './infraestructure/SolicitudAdopcionRepository.js';
@@ -14,7 +13,7 @@ let currentMascotaId = null;
 // Si venimos con ?id=..., pedimos la mascota al backend y precargamos los campos
 (async () => {
   try {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(globalThis.location.search);
     const id = params.get('id');
     if (id) {
       const m = await mascotaRepository.obtenerDetalleMascotaPorId( id);
@@ -44,22 +43,6 @@ let currentMascotaId = null;
 
 if (botonEnviarSolicitud) {
     botonEnviarSolicitud.addEventListener('click', () => {
-      const adoptante = new Adoptante({
-        nombre: (document.getElementById('adoptanteNombre') || {}).value || '',
-        cuestionario: {
-          responsabilidad: (document.getElementById('cuestionarioResponsabilidad') || {}).value || '',
-          ambiente: (document.getElementById('cuestionarioAmbiente') || {}).value || '',
-          Problemas_de_salud: (document.getElementById('cuestionarioProblemasSalud') || {}).value || '',
-          ninos: (document.getElementById('cuestionarioNinos') || {}).value || '',
-          otras_mascotas: (document.getElementById('cuestionarioOtrasMascotas') || {}).value || '',
-          economia: Number((document.getElementById('cuestionarioEconomia') || {}).value) || 0,
-        },
-        contacto: {
-          email: (document.getElementById('adoptanteEmail') || {}).value || '',
-          telefono: (document.getElementById('adoptanteTelefono') || {}).value || '',
-        }
-      });
-
       const mascota = new Mascota({
         id: currentMascotaId || undefined,
         nombre: (document.getElementById('mascotaNombre') || {}).value || '',
@@ -79,7 +62,7 @@ if (botonEnviarSolicitud) {
 
           const solicitud = await solicitudAdopcionService.createSolicitud(mascotaIdToSend, adoptanteNombre);
 
-          window.__ultimaSolicitudAdopcion = solicitud;
+          globalThis.__ultimaSolicitudAdopcion = solicitud;
           const mensajeDiv = document.getElementById('solicitudMensaje');
           if (mensajeDiv) mensajeDiv.innerText = 'Solicitud enviada correctamente';
         } catch (err) {

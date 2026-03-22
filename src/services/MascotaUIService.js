@@ -39,7 +39,7 @@ export const createMascotaCard = (m) => {
     ev.stopPropagation();
     ev.preventDefault();
     const idParam = encodeURIComponent(m.id || m._id || "");
-    window.location.href = `./UI/FormSolicitudAdopcion.html?id=${idParam}`;
+    globalThis.location.href = `./UI/FormSolicitudAdopcion.html?id=${idParam}`;
   });
 
   container.appendChild(link);
