@@ -26,7 +26,7 @@ describe('SolicitudAdopcion - EnviarSolicitud', () => {
 			if (u === 'http://localhost:3001' || u === 'https://ingsoftadoptme.onrender.com') {
 				return { ok: true, status: 200, json: async () => ({ status: 'ok' }) };
 			}
-			if (u.includes('/api/solicitudes') && opts && opts.method === 'POST') {
+			if (u.includes('/api/solicitudes') && opts?.method === 'POST') {
 				// simulate backend validation error for invalid mascotaId
 				return { ok: false, status: 400, json: async () => ({ message: 'mascotaId inválido' }) };
 			}
@@ -71,7 +71,7 @@ describe('SolicitudAdopcion - EnviarSolicitud', () => {
 			if (u === 'http://localhost:3001' || u === 'https://ingsoftadoptme.onrender.com') {
 				return { ok: true, status: 200, json: async () => ({ status: 'ok' }) };
 			}
-			if (u.includes('/api/solicitudes') && opts && opts.method === 'POST') {
+			if (u.includes('/api/solicitudes') && opts?.method === 'POST') {
 				return {
 					ok: true,
 					status: 201,

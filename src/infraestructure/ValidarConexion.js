@@ -7,9 +7,7 @@ export default class ValidarConexion {
 
   async validarConexionBackend() {
     const _hostname =
-    globalThis.window !== undefined && globalThis.location && globalThis.location.hostname
-      ? globalThis.location.hostname
-      : "localhost";
+      globalThis.window?.location?.hostname || "localhost";
 
     const API_URL =
       _hostname === "localhost"

@@ -1,8 +1,6 @@
 import Mascota from "../domain/Mascota.js";
 const _hostname =
-  globalThis.window !== undefined && globalThis.location && globalThis.location.hostname
-    ? globalThis.location.hostname
-    : "localhost";
+  globalThis.window?.location?.hostname || "localhost";
 const API_URL =
   _hostname === "localhost"
     ? "http://localhost:3001" // desarrollo

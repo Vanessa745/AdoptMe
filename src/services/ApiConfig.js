@@ -1,9 +1,5 @@
 const HOSTNAME =
-  globalThis.window !== undefined &&
-  globalThis.location &&
-  globalThis.location.hostname
-    ? globalThis.location.hostname
-    : "localhost";
+  globalThis.window?.location?.hostname || "localhost";
 
 export const API_URL =
   HOSTNAME === "localhost"
