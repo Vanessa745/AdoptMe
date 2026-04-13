@@ -4,7 +4,7 @@ import path from 'path';
 import { spawn } from 'cross-spawn';
 
 const COMMAND = 'jest';
-const args = ['--json', '--outputFile=./script/report.json'];
+const args = ['--coverage', '--json', '--outputFile=./script/report.json'];
 
 function runCommand(command, args) {
   return new Promise((resolve, reject) => {
