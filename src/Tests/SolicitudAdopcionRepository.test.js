@@ -141,3 +141,78 @@ describe('SolicitudAdopcionRepository.create', () => {
     );
   });
 });
+
+describe('SolicitudAdopcionRepository.obtenerTodasSolicitudes', () => {
+  let repository;
+
+  beforeEach(() => {
+    repository = new SolicitudAdopcionRepository();
+    global.fetch = jest.fn();
+    jest.clearAllMocks();
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  test('TC1 - debe retornar un arreglo de SolicitudAdopcion cuando res.ok es true', async () => {
+    const jsonResponse = [
+      {
+        id: 1,
+        mascotaId: 6,
+        adoptanteNombre: 'Oscar',
+        fechaSolicitud: '2026-04-19',
+        estado: 'pendiente'
+      },
+      {
+        id: 2,
+        mascotaId: 7,
+        adoptanteNombre: 'Lucia',
+        fechaSolicitud: '2026-04-20',
+        estado: 'aprobada'
+      }
+    ];
+
+    global.fetch.mockResolvedValue({
+      ok: true,
+      json: jest.fn().mockResolvedValue(jsonResponse)
+    });
+
+    const result = await repository.obtenerTodasSolicitudes();
+
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+    expect(global.fetch).toHaveBeenCalledWith(
+      expect.stringContaining('/api/solicitudes')
+    );
+
+    expect(Array.isArray(result)).toBe(true);
+    expect(result).toHaveLength(2);
+
+    expect(result[0]).toBeInstanceOf(SolicitudAdopcion);
+    expect(result[0].id).toBe(1);
+    expect(result[0].estado).toBe('pendiente');
+    expect(result[0].fechaSolicitud).toBe('2026-04-19');
+    expect(result[0].adoptante.nombre).toBe('Oscar');
+    expect(result[0].mascota.id).toBe(6);
+
+    expect(result[1]).toBeInstanceOf(SolicitudAdopcion);
+    expect(result[1].id).toBe(2);
+    expect(result[1].estado).toBe('aprobada');
+    expect(result[1].fechaSolicitud).toBe('2026-04-20');
+    expect(result[1].adoptante.nombre).toBe('Lucia');
+    expect(result[1].mascota.id).toBe(7);
+  });
+
+  test('TC2 - debe lanzar Error con body.message cuando !res.ok y res.json() funciona con message', async () => {
+    global.fetch.mockResolvedValue({
+      ok: false,
+      json: jest.fn().mockResolvedValue({
+        message: 'No se pudieron recuperar las solicitudes'
+      })
+    });
+
+    await expect(repository.obtenerTodasSolicitudes()).rejects.toThrow(
+      'No se pudieron recuperar las solicitudes'
+    );
+  });
+});

@@ -304,12 +304,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "57b363bf5cf3f1aec8ea5435355f3b4952c4ed18",
     "author": "Vanessa745",
     "commit": {
       "date": "2026-04-13T20:24:21.000Z",
       "message": "fix: calculo de cobertura de código",
-      "url": "https://github.com/Vanessa745/AdoptMe/commit/HEAD"
+      "url": "https://github.com/Vanessa745/AdoptMe/commit/57b363bf5cf3f1aec8ea5435355f3b4952c4ed18"
     },
     "stats": {
       "total": 5,
@@ -357,6 +357,25 @@
     },
     "coverage": 65.49,
     "test_count": 46,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Vanessa745",
+    "commit": {
+      "date": "2026-04-15T15:14:41.000Z",
+      "message": "test: 2 casos de prueba para obtenerTodasSolicitudes en SolicitudAdopcionRepository.test.js",
+      "url": "https://github.com/Vanessa745/AdoptMe/commit/HEAD"
+    },
+    "stats": {
+      "total": 75,
+      "additions": 75,
+      "deletions": 0,
+      "date": "2026-04-15"
+    },
+    "coverage": 72.54,
+    "test_count": 48,
     "failed_tests": 0,
     "conclusion": "success"
   }
