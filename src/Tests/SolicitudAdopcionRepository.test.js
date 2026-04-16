@@ -215,4 +215,81 @@ describe('SolicitudAdopcionRepository.obtenerTodasSolicitudes', () => {
       'No se pudieron recuperar las solicitudes'
     );
   });
+
+  test('TC3 - debe lanzar Error por defecto cuando !res.ok y res.json() funciona sin body.message', async () => {
+    global.fetch.mockResolvedValue({
+      ok: false,
+      json: jest.fn().mockResolvedValue({
+        detalle: 'Respuesta sin campo message'
+      })
+    });
+
+    await expect(repository.obtenerTodasSolicitudes()).rejects.toThrow(
+      'Error al obtener solicitudes de adopción'
+    );
+  });
+
+  test('TC4 - debe lanzar Error con text cuando !res.ok, res.json() falla y res.text() devuelve texto', async () => {
+    global.fetch.mockResolvedValue({
+      ok: false,
+      json: jest.fn().mockRejectedValue(new Error('JSON inválido')),
+      text: jest.fn().mockResolvedValue('Servicio no disponible')
+    });
+
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+    await expect(repository.obtenerTodasSolicitudes()).rejects.toThrow(
+      'Servicio no disponible'
+    );
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      'No se pudo parsear la respuesta de error como JSON:',
+      expect.any(Error)
+    );
+  });
+
+  test('TC5 - debe lanzar Error por defecto cuando !res.ok, res.json() falla y res.text() devuelve vacío', async () => {
+    global.fetch.mockResolvedValue({
+      ok: false,
+      json: jest.fn().mockRejectedValue(new Error('JSON inválido')),
+      text: jest.fn().mockResolvedValue('')
+    });
+
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+    await expect(repository.obtenerTodasSolicitudes()).rejects.toThrow(
+      'Error al obtener solicitudes de adopción'
+    );
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      'No se pudo parsear la respuesta de error como JSON:',
+      expect.any(Error)
+    );
+  });
+
+  test('TC6 - debe lanzar Error por defecto cuando !res.ok, res.json() falla y res.text() también falla', async () => {
+    global.fetch.mockResolvedValue({
+      ok: false,
+      json: jest.fn().mockRejectedValue(new Error('JSON inválido')),
+      text: jest.fn().mockRejectedValue(new Error('No se pudo leer texto'))
+    });
+
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+    await expect(repository.obtenerTodasSolicitudes()).rejects.toThrow(
+      'Error al obtener solicitudes de adopción'
+    );
+
+    expect(consoleSpy).toHaveBeenCalledTimes(2);
+    expect(consoleSpy).toHaveBeenNthCalledWith(
+      1,
+      'No se pudo parsear la respuesta de error como JSON:',
+      expect.any(Error)
+    );
+    expect(consoleSpy).toHaveBeenNthCalledWith(
+      2,
+      'No se pudo leer la respuesta de error como texto:',
+      expect.any(Error)
+    );
+  });
 });
