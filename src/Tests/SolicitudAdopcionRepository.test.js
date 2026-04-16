@@ -293,3 +293,141 @@ describe('SolicitudAdopcionRepository.obtenerTodasSolicitudes', () => {
     );
   });
 });
+
+describe('SolicitudAdopcionRepository.actualizarEstado', () => {
+  let repository;
+
+  beforeEach(() => {
+    repository = new SolicitudAdopcionRepository();
+    global.fetch = jest.fn();
+    jest.clearAllMocks();
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  test('TC1 - debe retornar un objeto SolicitudAdopcion cuando res.ok es true', async () => {
+    const jsonResponse = {
+      id: 3,
+      mascotaId: 6,
+      adoptanteNombre: 'Oscar',
+      fechaSolicitud: '2026-04-19',
+      estado: 'adoptado'
+    };
+
+    global.fetch.mockResolvedValue({
+      ok: true,
+      json: jest.fn().mockResolvedValue(jsonResponse)
+    });
+
+    const result = await repository.actualizarEstado(3, 'adoptado');
+
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+    expect(global.fetch).toHaveBeenCalledWith(
+      expect.stringContaining('/api/solicitudes/3/estado'),
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ estado: 'adoptado' })
+      }
+    );
+
+    expect(result).toBeInstanceOf(SolicitudAdopcion);
+    expect(result.id).toBe(3);
+    expect(result.estado).toBe('adoptado');
+    expect(result.fechaSolicitud).toBe('2026-04-19');
+    expect(result.adoptante.nombre).toBe('Oscar');
+    expect(result.mascota.id).toBe(6);
+  });
+
+  test('TC2 - debe lanzar Error con body.message cuando !res.ok y res.json() funciona con message', async () => {
+    global.fetch.mockResolvedValue({
+      ok: false,
+      json: jest.fn().mockResolvedValue({
+        message: 'No se pudo actualizar el estado'
+      })
+    });
+
+    await expect(repository.actualizarEstado(3, 'adoptado')).rejects.toThrow(
+      'No se pudo actualizar el estado'
+    );
+  });
+
+  test('TC3 - debe lanzar Error por defecto cuando !res.ok y res.json() funciona sin body.message', async () => {
+    global.fetch.mockResolvedValue({
+      ok: false,
+      json: jest.fn().mockResolvedValue({
+        detalle: 'Respuesta sin campo message'
+      })
+    });
+
+    await expect(repository.actualizarEstado(3, 'adoptado')).rejects.toThrow(
+      'Error al actualizar estado de la solicitud'
+    );
+  });
+
+  test('TC4 - debe lanzar Error con text cuando !res.ok, res.json() falla y res.text() devuelve texto', async () => {
+    global.fetch.mockResolvedValue({
+      ok: false,
+      json: jest.fn().mockRejectedValue(new Error('JSON inválido')),
+      text: jest.fn().mockResolvedValue('Estado inválido')
+    });
+
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+    await expect(repository.actualizarEstado(3, 'adoptado')).rejects.toThrow(
+      'Estado inválido'
+    );
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      'No se pudo parsear la respuesta de error como JSON:',
+      expect.any(Error)
+    );
+  });
+
+  test('TC5 - debe lanzar Error por defecto cuando !res.ok, res.json() falla y res.text() devuelve vacío', async () => {
+    global.fetch.mockResolvedValue({
+      ok: false,
+      json: jest.fn().mockRejectedValue(new Error('JSON inválido')),
+      text: jest.fn().mockResolvedValue('')
+    });
+
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+    await expect(repository.actualizarEstado(3, 'adoptado')).rejects.toThrow(
+      'Error al actualizar estado de la solicitud'
+    );
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      'No se pudo parsear la respuesta de error como JSON:',
+      expect.any(Error)
+    );
+  });
+
+  test('TC6 - debe lanzar Error por defecto cuando !res.ok, res.json() falla y res.text() también falla', async () => {
+    global.fetch.mockResolvedValue({
+      ok: false,
+      json: jest.fn().mockRejectedValue(new Error('JSON inválido')),
+      text: jest.fn().mockRejectedValue(new Error('No se pudo leer texto'))
+    });
+
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+    await expect(repository.actualizarEstado(3, 'adoptado')).rejects.toThrow(
+      'Error al actualizar estado de la solicitud'
+    );
+
+    expect(consoleSpy).toHaveBeenCalledTimes(2);
+    expect(consoleSpy).toHaveBeenNthCalledWith(
+      1,
+      'No se pudo parsear la respuesta de error como JSON:',
+      expect.any(Error)
+    );
+    expect(consoleSpy).toHaveBeenNthCalledWith(
+      2,
+      'No se pudo leer la respuesta de error como texto:',
+      expect.any(Error)
+    );
+  });
+});
