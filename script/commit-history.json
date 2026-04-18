@@ -361,12 +361,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "6dd1bf7c9361bf16b7ef6fcc9c861b6e549a12a4",
     "author": "Vanessa745",
     "commit": {
       "date": "2026-04-15T15:14:41.000Z",
       "message": "test: 2 casos de prueba para obtenerTodasSolicitudes en SolicitudAdopcionRepository.test.js",
-      "url": "https://github.com/Vanessa745/AdoptMe/commit/HEAD"
+      "url": "https://github.com/Vanessa745/AdoptMe/commit/6dd1bf7c9361bf16b7ef6fcc9c861b6e549a12a4"
     },
     "stats": {
       "total": 75,
@@ -414,6 +414,25 @@
     },
     "coverage": 88.03,
     "test_count": 58,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Vanessa745",
+    "commit": {
+      "date": "2026-04-18T22:07:39.000Z",
+      "message": "test: casos de prueba para ValidarConexion",
+      "url": "https://github.com/Vanessa745/AdoptMe/commit/HEAD"
+    },
+    "stats": {
+      "total": 147,
+      "additions": 124,
+      "deletions": 23,
+      "date": "2026-04-18"
+    },
+    "coverage": 89.29,
+    "test_count": 62,
     "failed_tests": 0,
     "conclusion": "success"
   }

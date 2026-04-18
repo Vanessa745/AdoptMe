@@ -15,9 +15,4 @@ export class MascotaService {
     this.validarConexion.validarConexionBackend();
     return this.mascotaRepository.obtenerDetalleMascotaPorId(idMascota);
   }
-  
-  async listarMascotas() {
-    const mascotas = await this.mascotaRepository.obtenerMascotas();
-    return mascotas || [];
-  }
 }

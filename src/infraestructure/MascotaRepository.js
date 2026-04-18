@@ -62,22 +62,4 @@ export default class MascotaRepository {
     const json = await res.json();
     return mapJsonToMascota(json);
 }
-
-  /*async actualizarEstado(id, nuevoEstado) {
-    const res = await fetch(`${API_URL}/api/mascotas/${id}/estado`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ estado: nuevoEstado }),
-    });
-
-    if (!res.ok) {
-      if (res.status === 404) {
-        throw new Error("Mascota no encontrada");
-      }
-      throw new Error("Error al actualizar estado de mascota");
-    }
-
-    const json = await res.json();
-    return mapJsonToMascota(json);
-  }*/
 }
