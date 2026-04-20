@@ -399,12 +399,12 @@
     "conclusion": "success"
   },
   {
-    "sha": "HEAD",
+    "sha": "6562d835307b4d4f829924666d31e4d6f08faf5a",
     "author": "Vanessa745",
     "commit": {
       "date": "2026-04-16T13:57:51.000Z",
       "message": "test: 6 casos de prueba para actualizarEstado en SolicitudAdopcionRepository.test.js",
-      "url": "https://github.com/Vanessa745/AdoptMe/commit/HEAD"
+      "url": "https://github.com/Vanessa745/AdoptMe/commit/6562d835307b4d4f829924666d31e4d6f08faf5a"
     },
     "stats": {
       "total": 138,
@@ -452,6 +452,25 @@
     },
     "coverage": 91.98,
     "test_count": 72,
+    "failed_tests": 0,
+    "conclusion": "success"
+  },
+  {
+    "sha": "HEAD",
+    "author": "Vanessa745",
+    "commit": {
+      "date": "2026-04-20T17:24:58.000Z",
+      "message": "fix: test para verMascota que utiliza el service",
+      "url": "https://github.com/Vanessa745/AdoptMe/commit/HEAD"
+    },
+    "stats": {
+      "total": 222,
+      "additions": 16,
+      "deletions": 206,
+      "date": "2026-04-20"
+    },
+    "coverage": 98.15,
+    "test_count": 73,
     "failed_tests": 0,
     "conclusion": "success"
   }
