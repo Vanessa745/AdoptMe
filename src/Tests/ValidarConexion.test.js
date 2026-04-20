@@ -70,6 +70,13 @@ describe("ValidarConexion", () => {
     validarConexion = new ValidarConexion();
   });
 
+  afterEach(() => {
+    jest.restoreAllMocks();
+    if (global.fetch) {
+      global.fetch.mockClear();
+    }
+  });
+
   describe("validarConexionInternet", () => {
     test("TC1 - lanza error cuando !navigator.online", () => {
       mockInternetConnection(false);
@@ -105,7 +112,8 @@ describe("ValidarConexion", () => {
     });
 
     // test("TC3 - lanza error cuando _hostname != 'localhost' y cuando !respuesta.ok", async () => {
-    //   globalThis.window.location.hostname = "midominio.com";
+    //   delete globalThis.window.location; 
+    //   globalThis.window.location = { hostname: "midominio.com" };
     //   global.fetch = createFetchMock({ healthOk: false });
 
     //   await expect(validarConexion.validarConexionBackend()).rejects.toThrow(
@@ -114,7 +122,8 @@ describe("ValidarConexion", () => {
     // });
 
     // test("TC4 - no lanza error cuando _hostname != 'localhost' y cuando respuesta.ok", async () => {
-    //   globalThis.window.location.hostname = "midominio.com";
+    //   delete globalThis.window.location; 
+    //   globalThis.window.location = { hostname: "midominio.com" };
     //   global.fetch = createFetchMock({ healthOk: true });
 
     //   await expect(validarConexion.validarConexionBackend()).resolves.toBeUndefined();
